@@ -1,1 +1,4 @@
-.sort {cursor:pointer;}
+.sort {cursor:s-resize;}
+.sort.asc {cursor:n-resize;}
+.sort.asc::after {content: '\21E9';}
+.sort.desc::after {content: '\21E7';}
