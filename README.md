@@ -1,9 +1,9 @@
-Jekyll-DB
+Jekyll-Datastore
 =========
 
 An easy way to use Jekyll and Github Pages as a "database".
 
-See it in action: [http://rypan.github.io/jekyll-db](http://rypan.github.io/jekyll-db)
+See it in action: [http://taophp.github.io/jekyll-datastore](http://taophp.github.io/jekyll-datastore)
 
 ### Use posts as entries
 
