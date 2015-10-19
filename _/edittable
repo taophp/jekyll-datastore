@@ -1,3 +1,3 @@
 #!/bin/bash
 dest=`dirname $0`/../_tables/$1
-geany $dest
+${VISUAL:-${EDITOR:-vi}} $dest

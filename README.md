@@ -40,9 +40,13 @@ Futher, we will gave our exemple using the Unix form only.
 
 ### Create table
 
-	$ _/newtable <mytable>
+	$ _/newtable MYTABLE <FROMTABLE>
 
-Then your text editor opens with the default structure for your new table. You can change it to fit your needs. This file will then be used as a model when you create a new record in this table. It is stored in the special directory `_tables` and it is named using the first parameter you gave to the command `<mytable>`.
+Then your text editor opens with the default structure for your new table. You can change it to fit your needs. This file will then be used as a model when you create a new record in this table. It is stored in the special directory `_tables` and it is named using the first parameter you gave to the command `MYTABLE`.
+
+If `FROMTABLE` is given, then the new structure will be created from this one. In fact, there is a `main` table (see below) that is used by default.
+
+You can use a previous table as a model for a new one.
 
 Please do not use `main` as table name, it is reserved.
 
@@ -52,7 +56,7 @@ Please do not create the structure file a other way, as some extra work is requi
 
 You may edit this file yourself manually with no arm. Or you can use the command :
 
-	$ _/edittable <matable>
+	$ _/edittable MYTABLE
 
 Then your text editor opened the structure file.
 
@@ -60,15 +64,15 @@ Then your text editor opened the structure file.
 
 Now that you have a structure, you can add a record to it this way :
 
-	$ _/newrecord <matable>
+	$ _/newrecord <MYTABLE>
 
-Then an new file is opened in your text editor, pre-filled with the structure of the table.
+Then an new file is opened in your text editor, pre-filled with the structure of the table. IF MYTABLE is not given, the `main` table (see below) is used.
 
 ### Using commands to manipulate the _main_ table
 
 The main table contains all your records of all your tables and even the records that do not belong to any table. The main table is displayed on the default home page of your project.
 
-You can edit its structure to fit your needs. You can create a new record in this table using the command `_/newrecord main`.
+You can edit its structure to fit your needs. You can create a new record in this table using the command `_/newrecord`.
 
 <a name="oldreadme"></a>
 ## Old Readme from Jekyll-DB

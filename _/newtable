@@ -1,5 +1,7 @@
 #!/bin/bash
-ori=`dirname $0`/../_tables/main
+from=${2:-main}
+ori=`dirname $0`/../_tables/$from
 dest=`dirname $0`/../_tables/$1
 cp $ori $dest
-geany $dest
+# @TODO use sed instead to change the file content : http://brunolinux.com/02-The_Terminal/Find_and%20Replace_with_Sed.html
+${VISUAL:-${EDITOR:-vi}} $dest
