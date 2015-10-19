@@ -1,0 +1,8 @@
+#!/bin/bash
+cdate=`date +"%Y-%m-%d"`
+echo -n "Titre: "
+read title
+dest=`dirname $0`"/../_posts/$cdate-"`echo $title|sed 's/ /-/g'`".md"
+ori=`dirname $0`/../_tables/$1
+cp $ori $dest
+geany $dest

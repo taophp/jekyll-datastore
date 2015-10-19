@@ -1,0 +1,5 @@
+#!/bin/bash
+ori=`dirname $0`/../_tables/main
+dest=`dirname $0`/../_tables/$1
+cp $ori $dest
+geany $dest
