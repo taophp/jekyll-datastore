@@ -1,0 +1,9 @@
+#!/bin/bash
+table=${1:-main}
+cdate=`date +"%Y-%m-%d"`
+echo -n "Title: "
+read title
+dest=`dirname $0`"/../_posts/$cdate-"`echo $title|sed 's/ /-/g'`".md"
+ori=`dirname $0`/../_tables/$table
+cp $ori $dest
+${VISUAL:-${EDITOR:-vi}} $dest
