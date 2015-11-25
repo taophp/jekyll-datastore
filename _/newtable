@@ -1,7 +1,22 @@
-#!/bin/bash
-from=${2:-main}
-ori=`dirname $0`/../_tables/$from
-dest=`dirname $0`/../_tables/$1
-cp $ori $dest
-# @TODO use sed instead to change the file content : http://brunolinux.com/02-The_Terminal/Find_and%20Replace_with_Sed.html
-${VISUAL:-${EDITOR:-vi}} $dest
+#!/usr/bin/env ruby
+#
+# Create a new table in a Jekyll-datastore
+require 'fileutils'
+require 'open3'
+require_relative 'libs/myfunctions.rb'
+
+table = ARGV.first ? ARGV.first : "item"
+myUpDir = File.expand_path(File.dirname(__FILE__)+'/..')+'/'
+
+print 'Name: '
+name = gets.chomp
+dest =  myUpDir+'_models/'+friendly_filename(name)+'.md'
+source = myUpDir+'_models/'+table+'.md'
+
+data = File.read(source)
+filtered_data = data.sub("- items", "- items\n- "+name)
+File.open(dest, 'w') do |f|
+  f.write(filtered_data)
+end
+
+Open3.popen3("${VISUAL:-${EDITOR:-vi}} #{dest}")

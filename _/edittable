@@ -1,3 +1,0 @@
-#!/bin/bash
-dest=`dirname $0`/../_tables/$1
-${VISUAL:-${EDITOR:-vi}} $dest

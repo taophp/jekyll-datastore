@@ -2,6 +2,7 @@
 #
 # Create a new record in a Jekyll-datastore table
 require 'fileutils'
+require 'open3'
 require_relative 'libs/myfunctions.rb'
 
 table = ARGV.first ? ARGV.first : "item"
@@ -12,8 +13,11 @@ print 'Title: '
 title = gets.chomp
 dest =  myUpDir+'_posts/'+time.strftime("%Y-%m-%d")+'-'+friendly_filename(title)+'.md'
 source = myUpDir+'_models/'+table+'.md'
-puts title
-puts dest
-puts source
-FileUtils.cp(source,dest)
 
+data = File.read(source)
+filtered_data = data.sub("_title_", title)
+File.open(dest, 'w') do |f|
+  f.write(filtered_data)
+end
+
+Open3.popen3("${VISUAL:-${EDITOR:-vi}} #{dest}")
