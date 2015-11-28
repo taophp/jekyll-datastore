@@ -3,6 +3,7 @@
 # Create a new table in a Jekyll-datastore
 require 'fileutils'
 require 'open3'
+require 'safe_yaml'
 require_relative 'libs/myfunctions.rb'
 
 table = ARGV.first ? ARGV.first : "item"
@@ -14,9 +15,11 @@ dest =  myUpDir+'_models/'+friendly_filename(name)+'.md'
 source = myUpDir+'_models/'+table+'.md'
 
 data = File.read(source)
-filtered_data = data.sub("- items", "- items\n- "+name)
+yaml = YAML.safe_load(data)
+data = data.sub("- items", "- items\n- "+name)
+data = data.sub("pageFileName: "+yaml['tableConf']['pageFileName'],"pageFileName: "+friendly_filename(name)+".html")
 File.open(dest, 'w') do |f|
-  f.write(filtered_data)
+  f.write(data)
 end
 
 Open3.popen3("${VISUAL:-${EDITOR:-vi}} #{dest}")
