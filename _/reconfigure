@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+#
+# Create a new table in a Jekyll-datastore
+require 'fileutils'
+require 'safe_yaml'
+require_relative 'libs/myfunctions.rb'
+
+myUpDir = File.expand_path(File.dirname(__FILE__)+'/..')+'/'
+
+tables = []
+Dir.glob(myUpDir+'_models/*.md') do |table|
+	yaml = File.read(table)
+	item = YAML.safe_load(yaml)
+  tables.push(item)
+end
+tables.each do |table|
+	puts table
+end
+
+# 1- create the index file for each table
+tables.each do |table|
+	dest =  myUpDir+table['tableConf']['pageFileName']
+		if not File.file?(dest)
+		name = table['tableConf']['name']
+		source = myUpDir+'_dblayouts/table.html'
+		data = File.read(source)
+		data = data.gsub("_name_", name)
+		data = data.gsub("_friendlyname_", friendly_filename(name))
+		File.open(dest, 'w') do |f|
+			f.write(data)
+		end
+	end
+end
+
+# 2- update the menu
+# 3- create the interactive table

@@ -4,7 +4,10 @@ title: _title_
 tables:
 - items
 tableConf:
-  appearsInMenu: true
+  name: items
+  menu:
+    appears: true
+    name: Home
   pageFileName: index.html
   listedFields:
     - title

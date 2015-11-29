@@ -22,4 +22,5 @@ File.open(dest, 'w') do |f|
   f.write(data)
 end
 
+# todo:: improve to make it work with Ubuntu and Windows
 Open3.popen3("${VISUAL:-${EDITOR:-vi}} #{dest}")
