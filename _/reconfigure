@@ -13,9 +13,6 @@ Dir.glob(myUpDir+'_models/*.md') do |table|
 	item = YAML.safe_load(yaml)
   tables.push(item)
 end
-tables.each do |table|
-	puts table
-end
 
 # 1- create the index file for each table
 tables.each do |table|
@@ -33,4 +30,19 @@ tables.each do |table|
 end
 
 # 2- update the menu
+# build the tree
+tree = Hash.new
+toSortLater = Hash.new
+tables.each do |table|
+	if table['tableConf']['menu']['appears'] == true
+		if table['tableConf']['parent'] == nil
+			tree[table['tableConf']['name']] = table['tableConf']
+		else
+			toSortLater[table['tableConf']['name']] = table['tableConf']
+		end
+	end
+end
+puts tree
+puts '---'
+puts toSortLater
 # 3- create the interactive table

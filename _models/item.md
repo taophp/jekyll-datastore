@@ -5,6 +5,7 @@ tables:
 - items
 tableConf:
   name: items
+  parent:
   menu:
     appears: true
     name: Home

@@ -1,6 +1,8 @@
-body {margin-top:3em;}
+body {padding-top: 70px;}
 h1 {text-transform: capitalize;}
 .sort {cursor:s-resize;}
 .sort.asc {cursor:n-resize;}
 .sort.asc::after {content: '\21E9';}
 .sort.desc::after {content: '\21E7';}
+.nav > li > a {display: inline-block;}
+.caret-container {padding-left:0 !important;}
